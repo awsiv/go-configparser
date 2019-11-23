@@ -195,3 +195,27 @@ func (p *ConfigParser) SaveWithDelimiter(filename, delimiter string) error {
 
 	return nil
 }
+
+func writeSectionStr(delimiter string, section *Section) string {
+	strOut := fmt.Sprintf("[%s]\n", section.Name)
+
+	for _, option := range section.Options() {
+		strOut += fmt.Sprintf("%s %s %s\n", option, delimiter, section.options[option])
+	}
+	strOut += "\n"
+	return strOut
+}
+
+func (p *ConfigParser) ToString(filename, delimiter string) string {
+	strOut := ""
+
+	if len(p.defaults.Options()) > 0 {
+		strOut = writeSectionStr(delimiter, p.defaults)
+	}
+
+	for _, s := range p.Sections() {
+		strOut += writeSectionStr(delimiter, p.config[s])
+	}
+
+	return strOut
+}
