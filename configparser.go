@@ -206,8 +206,9 @@ func writeSectionStr(delimiter string, section *Section) string {
 	return strOut
 }
 
-func (p *ConfigParser) ToString(filename, delimiter string) string {
+func (p *ConfigParser) ToString() string {
 	strOut := ""
+	delimiter := "="
 
 	if len(p.defaults.Options()) > 0 {
 		strOut = writeSectionStr(delimiter, p.defaults)
