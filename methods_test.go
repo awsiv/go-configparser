@@ -1,7 +1,7 @@
 package configparser_test
 
 import (
-	"github.com/bigkevmcd/go-configparser"
+	"github.com/awsiv/go-configparser"
 
 	gc "gopkg.in/check.v1"
 )
